@@ -58,6 +58,10 @@ sh run_test.sh
 ```
 
 ## Demo
-1. We use a modified version of FaceBoxes as the face detector, so go to folder `FaceBoxes/utils`, run `sh make.sh` to build for NMS.
-2. You can download our trained models from here, and put them under folder `snapshots/DATA_NAME/EXPERIMENT_NAME/`. 
-2. Back to folder `PIPNet`, edit `run_demo.sh` to choose the config file and input source you want, then run `sh run_demo.sh`. We support image, video, and camera as the input.
+1. We use a modified version of [FaceBoxes](https://github.com/zisianw/FaceBoxes.PyTorch) as the face detector, so go to folder `FaceBoxesV2/utils`, run `sh make.sh` to build for NMS.
+2. For PIPNets, you can download our trained models from here, and put them under folder `snapshots/DATA_NAME/EXPERIMENT_NAME/`. 
+3. Back to folder `PIPNet`, edit `run_demo.sh` to choose the config file and input source you want, then run `sh run_demo.sh`. We support image, video, and camera as the input. Some sample predictions can be seen as follows.
+* PIPNet trained on WFLW, with an image `images/1.jpg` as the input:
+<img src="images/1_out_WFLW_model.jpg" alt="1_out_WFLW_model" width="512px">
+* PIPNet trained on WFLW, with an video `videos/002.avi` as the input:
+<img src="videos/002_out_WFLW_model.gif" alt="002_out_WFLW_model" width="512px">
