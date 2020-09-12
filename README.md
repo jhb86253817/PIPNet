@@ -64,8 +64,9 @@ sh run_train.sh
 ```
 
 ### Unsupervised Domain Adaptation
-Datasets: * data_300W_COFW_WFLW: 300W + COFW-68 (unlabeled) + WFLW-68 (unlabeled) 
-          * data_300W_CELEBA: 300W + CelebA (unlabeled)
+Datasets: 
+* data_300W_COFW_WFLW: 300W + COFW-68 (unlabeled) + WFLW-68 (unlabeled) 
+* data_300W_CELEBA: 300W + CelebA (unlabeled)
 
 1. Download 300W, COFW, and WFLW as in the supervised learning setting. Download annotations of COFW-68 test from [here](https://github.com/golnazghiasi/cofw68-benchmark). For 300W+CelebA, you also nedd to download the in-the-wild CelebA images from [here](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html), and the [face bounding boxes]() detected by us. The folder structure should look like this:
 ````
