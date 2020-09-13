@@ -71,7 +71,7 @@ preprocess = transforms.Compose([transforms.Resize((cfg.input_size, cfg.input_si
 
 def demo_video(video_file, net, preprocess, input_size, net_stride, num_nb, use_gpu, device):
     detector = FaceBoxesDetector('FaceBoxes', 'FaceBoxesV2/weights/FaceBoxesV2.pth', use_gpu, device)
-    my_thresh = 0.6
+    my_thresh = 0.9
     det_box_scale = 1.2
 
     net.eval()

@@ -74,7 +74,7 @@ class FaceBoxesDetector(Detector):
 
             # do NMS
             dets = np.hstack((boxes, scores[:, np.newaxis])).astype(np.float32, copy=False)
-            keep = nms(dets, 0.3,force_cpu=(not self.use_gpu))
+            keep = nms(dets, 0.3)
             dets = dets[keep, :]
 
             dets = dets[:750, :]
