@@ -40,7 +40,7 @@ cfg.data_name = data_name
 
 save_dir = os.path.join('./snapshots', cfg.data_name, cfg.experiment_name)
 
-reverse_index1, reverse_index2, max_len = get_meanface(os.path.join('data', cfg.data_name, 'meanface.txt'), cfg.num_nb)
+meanface_indices, reverse_index1, reverse_index2, max_len = get_meanface(os.path.join('data', cfg.data_name, 'meanface.txt'), cfg.num_nb)
 
 if cfg.backbone == 'resnet18':
     resnet18 = models.resnet18(pretrained=cfg.pretrained)
