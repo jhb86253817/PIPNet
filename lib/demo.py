@@ -1,6 +1,6 @@
 import cv2, os
 import sys
-sys.path.insert(0, 'FaceBoxes')
+sys.path.insert(0, 'FaceBoxesV2')
 sys.path.insert(0, '..')
 import numpy as np
 import pickle
@@ -62,7 +62,7 @@ else:
 net = net.to(device)
 
 weight_file = os.path.join(save_dir, 'epoch%d.pth' % (cfg.num_epochs-1))
-state_dict = torch.load(weight_file)
+state_dict = torch.load(weight_file, map_location=device)
 net.load_state_dict(state_dict)
 
 normalize = transforms.Normalize(mean=[0.485, 0.456, 0.406],
