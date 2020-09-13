@@ -5,12 +5,12 @@ This is the code of paper [Pixel-in-Pixel Net: Towards Efficient Facial Landmark
 <img src="images/detection_heads.png" alt="det_heads" width="512px">
 
 ## Installation
-1. Install PyTorch >= v1.1, <= v1.5
+1. Install Python3 and PyTorch >= v1.1, <= v1.5
 2. Clone this repository.
 ```Shell
 git clone https://github.com/jhb86253817/PIPNet.git
 ```
-3. Install the dependencies in requirements.txt
+3. Install the dependencies in requirements.txt.
 ```Shell
 pip install -r requirements.txt
 ```
