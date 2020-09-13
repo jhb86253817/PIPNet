@@ -17,8 +17,8 @@ pip install -r requirements.txt
 
 ## Demo
 1. We use a [modified version](https://github.com/jhb86253817/FaceBoxesV2) of [FaceBoxes](https://github.com/zisianw/FaceBoxes.PyTorch) as the face detector, so go to folder `FaceBoxesV2/utils`, run `sh make.sh` to build for NMS.
-2. For PIPNets, you can download our trained models from [here](https://drive.google.com/drive/folders/17OwDgJUfuc5_ymQ3QruD8pUnh5zHreP2?usp=sharing), and put them under folder `snapshots/DATA_NAME/EXPERIMENT_NAME/`. 
-3. Back to folder `PIPNet`, edit `run_demo.sh` to choose the config file and input source you want, then run `sh run_demo.sh`. We support image, video, and camera as the input. Some sample predictions can be seen as follows.
+2. Back to folder `PIPNet`, create two empty folders `logs` and `snapshots`. For PIPNets, you can download our trained models from [here](https://drive.google.com/drive/folders/17OwDgJUfuc5_ymQ3QruD8pUnh5zHreP2?usp=sharing), and put them under folder `snapshots/DATA_NAME/EXPERIMENT_NAME/`. 
+3. Edit `run_demo.sh` to choose the config file and input source you want, then run `sh run_demo.sh`. We support image, video, and camera as the input. Some sample predictions can be seen as follows.
 * PIPNet-ResNet18 trained on WFLW, with image `images/1.jpg` as the input:
 <img src="images/1_out_WFLW_model.jpg" alt="1_out_WFLW_model" width="400px">
 
@@ -36,8 +36,11 @@ Datasets: [300W](https://ibug.doc.ic.ac.uk/resources/facial-point-annotations/),
 1. Download the datasets from official sources, then put them under folder `data`. The folder structure should look like this:
 ````
 PIPNet
+-- FaceBoxesV2
 -- lib
 -- experiments
+-- logs
+-- snapshots
 -- data
    |-- data_300W
        |-- afw
@@ -71,8 +74,11 @@ Datasets:
 1. Download 300W, COFW, and WFLW as in the supervised learning setting. Download annotations of COFW-68 test from [here](https://github.com/golnazghiasi/cofw68-benchmark). For 300W+CelebA, you also need to download the in-the-wild CelebA images from [here](http://mmlab.ie.cuhk.edu.hk/projects/CelebA.html), and the [face bounding boxes](https://drive.google.com/drive/folders/17OwDgJUfuc5_ymQ3QruD8pUnh5zHreP2?usp=sharing) detected by us. The folder structure should look like this:
 ````
 PIPNet
+-- FaceBoxesV2
 -- lib
 -- experiments
+-- logs
+-- snapshots
 -- data
    |-- data_300W
        |-- afw
