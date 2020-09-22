@@ -1,6 +1,6 @@
 # Pixel-in-Pixel Net: Towards Efficient Facial Landmark Detection in the Wild
 ## Introduction
-This is the code of paper [Pixel-in-Pixel Net: Towards Efficient Facial Landmark Detection in the Wild](https://arxiv.org/abs/2003.03771). We propose a novel facial landmark detector, PIPNet, that is **fast**, **accurate**, and **robust**. PIPNet can be trained under two settings: (1) supervised learning; (2) unsupervised domain adaptation (UDA). With UDA, PIPNet has better cross-domain generalization performance by utilizing massive amounts of unlabeled data. 
+This is the code of paper [Pixel-in-Pixel Net: Towards Efficient Facial Landmark Detection in the Wild](https://arxiv.org/abs/2003.03771). We propose a novel facial landmark detector, PIPNet, that is **fast**, **accurate**, and **robust**. PIPNet can be trained under two settings: (1) supervised learning; (2) generalizable semi-supervised learning (GSSL). With GSSL, PIPNet has better cross-domain generalization performance by utilizing massive amounts of unlabeled data across domains. 
 
 <img src="images/detection_heads.png" alt="det_heads" width="512px">
 
@@ -25,7 +25,7 @@ pip install -r requirements.txt
 * PIPNet-ResNet18 trained on WFLW, with video `videos/002.avi` as the input:
 <img src="videos/002_out_WFLW_model.gif" alt="002_out_WFLW_model" width="512px">
 
-* PIPNet-ResNet18 trained on 300W+CelebA (UDA), with video `videos/007.avi` as the input:
+* PIPNet-ResNet18 trained on 300W+CelebA (GSSL), with video `videos/007.avi` as the input:
 <img src="videos/007_out_300W_CELEBA_model.gif" alt="007_out_300W_CELEBA_model" width="512px">
 
 ## Training
@@ -66,7 +66,7 @@ python preprocess.py data_300W
 sh run_train.sh
 ```
 
-### Unsupervised Domain Adaptation
+### Generalizable Semi-supervised Learning
 Datasets: 
 * data_300W_COFW_WFLW: 300W + COFW-68 (unlabeled) + WFLW-68 (unlabeled) 
 * data_300W_CELEBA: 300W + CelebA (unlabeled)
@@ -101,18 +101,18 @@ PIPNet
        |-- cofw68_test_annotations
        |-- cofw68_test_bboxes.mat
 ````
-2. Go to folder `lib`, preprocess a dataset by running ```python preprocess_uda.py DATA_NAME```.
+2. Go to folder `lib`, preprocess a dataset by running ```python preprocess_gssl.py DATA_NAME```.
    To process data_300W_COFW_WFLW, run
    ```
    python preprocess_uda.py data_300W_COFW_WFLW
    ```
    To process data_300W_CELEBA, run
    ```
-   python preprocess_uda.py CELEBA
+   python preprocess_gssl.py CELEBA
    ```
    and
    ```
-   python preprocess_uda.py data_300W_CELEBA
+   python preprocess_gssl.py data_300W_CELEBA
    ```
 3. Back to folder `PIPNet`, edit `run_train.sh` to choose the config file you want. Then, train the model by running:
 ```
