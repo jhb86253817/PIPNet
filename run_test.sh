@@ -21,7 +21,7 @@
 #python lib/test.py experiments/AFLW/pip_32_16_60_r101_l2_l1_10_1_nb10.py test.txt images_test
 
 ######################################################################################
-# unsupervised domain adaptation
+# GSSL
 
 # 300W + COFW_68 (unlabeled) + WFLW_68 (unlabeled), resnet18, with curriculum
 #python lib/test.py experiments/data_300W_COFW_WFLW/pip_32_16_60_r18_l2_l1_10_1_nb10_wcc.py test_300W.txt images_test_300W

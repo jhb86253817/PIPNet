@@ -15,13 +15,13 @@ import torchvision.transforms as transforms
 import torchvision.datasets as datasets
 import torchvision.models as models
 
-from networks_uda import *
-import data_utils_uda
-from functions_uda import * 
+from networks_gssl import *
+import data_utils_gssl
+from functions_gssl import * 
 
 if not len(sys.argv) == 2:
     print('Format:')
-    print('python lib/train_uda.py config_file')
+    print('python lib/train_gssl.py config_file')
     exit(0)
 experiment_name = sys.argv[1].split('/')[-1][:-3]
 data_name = sys.argv[1].split('/')[-2]
@@ -149,7 +149,7 @@ scheduler = optim.lr_scheduler.MultiStepLR(optimizer, milestones=cfg.decay_steps
 
 labels = get_label(cfg.data_name, 'train_300W.txt', 'std')
 
-train_data = data_utils_uda.ImageFolder_pip(os.path.join('data', cfg.data_name, 'images_train'), 
+train_data = data_utils_gssl.ImageFolder_pip(os.path.join('data', cfg.data_name, 'images_train'), 
                                         labels, cfg.input_size, cfg.num_lms, 
                                         cfg.net_stride, points_flip, meanface_indices,
                                         transforms.Compose([
@@ -235,7 +235,7 @@ for ti, task_type in enumerate(task_type_list):
             est_preds.append([image_name, task_type, lms_pred_merge])
     
     ################
-    # uda 
+    # GSSL 
     if cfg.det_head == 'pip':
         if cfg.backbone == 'resnet18':
             resnet18 = models.resnet18(pretrained=cfg.pretrained)
@@ -253,7 +253,7 @@ for ti, task_type in enumerate(task_type_list):
     labels = get_label(cfg.data_name, 'train_300W.txt', 'std')
     labels += est_preds
     
-    train_data = data_utils_uda.ImageFolder_pip(os.path.join('data', cfg.data_name, 'images_train'), 
+    train_data = data_utils_gssl.ImageFolder_pip(os.path.join('data', cfg.data_name, 'images_train'), 
                                             labels, cfg.input_size, cfg.num_lms, 
                                             cfg.net_stride, points_flip, meanface_indices,
                                             transforms.Compose([

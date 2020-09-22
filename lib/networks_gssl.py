@@ -9,7 +9,7 @@ import time
 # 128        2x2
 # 64         4x4
 # 32         8x8
-# pip regression, resnet18, for UDA
+# pip regression, resnet18, for GSSL
 class Pip_resnet18(nn.Module):
     def __init__(self, resnet, num_nb, num_lms=68, input_size=256, net_stride=32):
         super(Pip_resnet18, self).__init__()
