@@ -151,5 +151,10 @@ print('Average inference time:', time_all/len(labels))
 
 if cfg.det_head == 'pip':
     print('nme: {}'.format(np.mean(nmes_merge)))
-    logging.info('nme: {}'.format(np.mean(nmes_merge))) 
+    logging.info('nme: {}'.format(np.mean(nmes_merge)))
 
+    fr, auc = compute_fr_and_auc(nmes_merge)
+    print('fr : {}'.format(fr))
+    logging.info('fr : {}'.format(fr))
+    print('auc: {}'.format(auc))
+    logging.info('auc: {}'.format(auc))

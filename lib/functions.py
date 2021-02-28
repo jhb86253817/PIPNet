@@ -6,6 +6,8 @@ import torch
 import torch.nn as nn
 import random
 import time
+from scipy.integrate import simps
+
 
 def get_label(data_name, label_file, task_type=None):
     label_path = os.path.join('data', data_name, label_file)
@@ -199,3 +201,10 @@ def compute_nme(lms_pred, lms_gt, norm):
     nme = np.mean(np.linalg.norm(lms_pred - lms_gt, axis=1)) / norm 
     return nme
 
+def compute_fr_and_auc(nmes, thres=0.1, step=0.0001):
+    num_data = len(nmes)
+    xs = np.arange(0, thres + step, step)
+    ys = np.array([np.count_nonzero(nmes <= x) for x in xs]) / float(num_data)
+    fr = 1.0 - ys[-1]
+    auc = simps(ys, x=xs) / thres
+    return fr, auc
