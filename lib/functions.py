@@ -182,12 +182,12 @@ def forward_pip(net, inputs, preprocess, input_size, net_stride, num_nb):
         outputs_nb_y_select = outputs_nb_y_select.squeeze(1).view(-1, num_nb)
 
         tmp_x = (max_ids%tmp_width).view(-1,1).float()+outputs_x_select.view(-1,1)
-        tmp_y = (max_ids/tmp_width).view(-1,1).float()+outputs_y_select.view(-1,1)
+        tmp_y = (torch.floor(max_ids/tmp_width)).view(-1,1).float()+outputs_y_select.view(-1,1)
         tmp_x /= 1.0 * input_size / net_stride
         tmp_y /= 1.0 * input_size / net_stride
 
         tmp_nb_x = (max_ids%tmp_width).view(-1,1).float()+outputs_nb_x_select
-        tmp_nb_y = (max_ids/tmp_width).view(-1,1).float()+outputs_nb_y_select
+        tmp_nb_y = (torch.floor(max_ids/tmp_width)).view(-1,1).float()+outputs_nb_y_select
         tmp_nb_x = tmp_nb_x.view(-1, num_nb)
         tmp_nb_y = tmp_nb_y.view(-1, num_nb)
         tmp_nb_x /= 1.0 * input_size / net_stride
