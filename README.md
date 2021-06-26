@@ -104,7 +104,7 @@ PIPNet
 2. Go to folder `lib`, preprocess a dataset by running ```python preprocess_gssl.py DATA_NAME```.
    To process data_300W_COFW_WFLW, run
    ```
-   python preprocess_uda.py data_300W_COFW_WFLW
+   python preprocess_gssl.py data_300W_COFW_WFLW
    ```
    To process data_300W_CELEBA, run
    ```
