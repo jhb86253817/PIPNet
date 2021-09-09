@@ -125,6 +125,16 @@ sh run_train.sh
 sh run_test.sh
 ```
 
+## Citation
+````
+@article{JLS21,
+  title={Pixel-in-Pixel Net: Towards Efficient Facial Landmark Detection in the Wild},
+  author={Haibo Jin and Shengcai Liao and Ling Shao},
+  journal   = {International Journal of Computer Vision}
+  year={2021}
+}
+````
+
 ## Acknowledgement
 We thank the following great works:
 * [human-pose-estimation.pytorch](https://github.com/microsoft/human-pose-estimation.pytorch)
