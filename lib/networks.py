@@ -317,9 +317,9 @@ class Pip_resnet18(nn.Module):
         x5 = self.nb_y_layer(x)
         return x1, x2, x3, x4, x5
 
-class Pip_mbnet(nn.Module):
+class Pip_mbnetv2(nn.Module):
     def __init__(self, mbnet, num_nb, num_lms=68, input_size=256, net_stride=32):
-        super(Pip_mbnet, self).__init__()
+        super(Pip_mbnetv2, self).__init__()
         self.num_nb = num_nb
         self.num_lms = num_lms
         self.input_size = input_size
