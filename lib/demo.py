@@ -22,6 +22,7 @@ import torchvision.models as models
 from networks import *
 import data_utils
 from functions import *
+from mobilenetv3 import mobilenetv3_large
 
 if not len(sys.argv) == 3:
     print('Format:')
@@ -51,6 +52,14 @@ elif cfg.backbone == 'resnet50':
 elif cfg.backbone == 'resnet101':
     resnet101 = models.resnet101(pretrained=cfg.pretrained)
     net = Pip_resnet101(resnet101, cfg.num_nb, num_lms=cfg.num_lms, input_size=cfg.input_size, net_stride=cfg.net_stride)
+elif cfg.backbone == 'mobilenet':
+    mbnet = models.mobilenet_v2(pretrained=cfg.pretrained)
+    net = Pip_mbnet(mbnet, cfg.num_nb, num_lms=cfg.num_lms, input_size=cfg.input_size, net_stride=cfg.net_stride)
+elif cfg.backbone == 'mobilenet_v3':
+    mbnet = mobilenetv3_large()
+    if cfg.pretrained:
+        mbnet.load_state_dict(torch.load('lib/mobilenetv3-large-1cd25616.pth'))
+    net = Pip_mbnetv3(mbnet, cfg.num_nb, num_lms=cfg.num_lms, input_size=cfg.input_size, net_stride=cfg.net_stride)
 else:
     print('No such backbone!')
     exit(0)
