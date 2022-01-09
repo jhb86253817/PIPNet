@@ -317,6 +317,99 @@ class Pip_resnet18(nn.Module):
         x5 = self.nb_y_layer(x)
         return x1, x2, x3, x4, x5
 
+class Pip_mbnet(nn.Module):
+    def __init__(self, mbnet, num_nb, num_lms=68, input_size=256, net_stride=32):
+        super(Pip_mbnet, self).__init__()
+        self.num_nb = num_nb
+        self.num_lms = num_lms
+        self.input_size = input_size
+        self.net_stride = net_stride
+        self.features = mbnet.features
+        self.sigmoid = nn.Sigmoid()
+
+        self.cls_layer = nn.Conv2d(1280, num_lms, kernel_size=1, stride=1, padding=0)
+        self.x_layer = nn.Conv2d(1280, num_lms, kernel_size=1, stride=1, padding=0)
+        self.y_layer = nn.Conv2d(1280, num_lms, kernel_size=1, stride=1, padding=0)
+        self.nb_x_layer = nn.Conv2d(1280, num_nb*num_lms, kernel_size=1, stride=1, padding=0)
+        self.nb_y_layer = nn.Conv2d(1280, num_nb*num_lms, kernel_size=1, stride=1, padding=0)
+
+        nn.init.normal_(self.cls_layer.weight, std=0.001)
+        if self.cls_layer.bias is not None:
+            nn.init.constant_(self.cls_layer.bias, 0)
+
+        nn.init.normal_(self.x_layer.weight, std=0.001)
+        if self.x_layer.bias is not None:
+            nn.init.constant_(self.x_layer.bias, 0)
+
+        nn.init.normal_(self.y_layer.weight, std=0.001)
+        if self.y_layer.bias is not None:
+            nn.init.constant_(self.y_layer.bias, 0)
+
+        nn.init.normal_(self.nb_x_layer.weight, std=0.001)
+        if self.nb_x_layer.bias is not None:
+            nn.init.constant_(self.nb_x_layer.bias, 0)
+
+        nn.init.normal_(self.nb_y_layer.weight, std=0.001)
+        if self.nb_y_layer.bias is not None:
+            nn.init.constant_(self.nb_y_layer.bias, 0)
+
+    def forward(self, x):
+        x = self.features(x)
+        x1 = self.cls_layer(x)
+        x2 = self.x_layer(x)
+        x3 = self.y_layer(x)
+        x4 = self.nb_x_layer(x)
+        x5 = self.nb_y_layer(x)
+        return x1, x2, x3, x4, x5
+
+class Pip_mbnetv3(nn.Module):
+    def __init__(self, mbnet, num_nb, num_lms=68, input_size=256, net_stride=32):
+        super(Pip_mbnetv3, self).__init__()
+        self.num_nb = num_nb
+        self.num_lms = num_lms
+        self.input_size = input_size
+        self.net_stride = net_stride
+        self.features = mbnet.features
+        self.conv = mbnet.conv
+        self.sigmoid = nn.Sigmoid()
+
+        self.cls_layer = nn.Conv2d(960, num_lms, kernel_size=1, stride=1, padding=0)
+        self.x_layer = nn.Conv2d(960, num_lms, kernel_size=1, stride=1, padding=0)
+        self.y_layer = nn.Conv2d(960, num_lms, kernel_size=1, stride=1, padding=0)
+        self.nb_x_layer = nn.Conv2d(960, num_nb*num_lms, kernel_size=1, stride=1, padding=0)
+        self.nb_y_layer = nn.Conv2d(960, num_nb*num_lms, kernel_size=1, stride=1, padding=0)
+
+        nn.init.normal_(self.cls_layer.weight, std=0.001)
+        if self.cls_layer.bias is not None:
+            nn.init.constant_(self.cls_layer.bias, 0)
+
+        nn.init.normal_(self.x_layer.weight, std=0.001)
+        if self.x_layer.bias is not None:
+            nn.init.constant_(self.x_layer.bias, 0)
+
+        nn.init.normal_(self.y_layer.weight, std=0.001)
+        if self.y_layer.bias is not None:
+            nn.init.constant_(self.y_layer.bias, 0)
+
+        nn.init.normal_(self.nb_x_layer.weight, std=0.001)
+        if self.nb_x_layer.bias is not None:
+            nn.init.constant_(self.nb_x_layer.bias, 0)
+
+        nn.init.normal_(self.nb_y_layer.weight, std=0.001)
+        if self.nb_y_layer.bias is not None:
+            nn.init.constant_(self.nb_y_layer.bias, 0)
+
+    def forward(self, x):
+        x = self.features(x)
+        x = self.conv(x)
+        x1 = self.cls_layer(x)
+        x2 = self.x_layer(x)
+        x3 = self.y_layer(x)
+        x4 = self.nb_x_layer(x)
+        x5 = self.nb_y_layer(x)
+        return x1, x2, x3, x4, x5
+    
+    
 if __name__ == '__main__':
     pass
 
