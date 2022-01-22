@@ -2,10 +2,12 @@
 ## Introduction
 This is the code of paper [Pixel-in-Pixel Net: Towards Efficient Facial Landmark Detection in the Wild](https://arxiv.org/abs/2003.03771). We propose a novel facial landmark detector, PIPNet, that is **fast**, **accurate**, and **robust**. PIPNet can be trained under two settings: (1) supervised learning; (2) generalizable semi-supervised learning (GSSL). With GSSL, PIPNet has better cross-domain generalization performance by utilizing massive amounts of unlabeled data across domains. 
 
+<img src="images/speed.png" alt="speed" width="512px">
+
 <img src="images/detection_heads.png" alt="det_heads" width="512px">
 
 ## Installation
-1. Install Python3 and PyTorch >= v1.1, <= v1.6
+1. Install Python3 and PyTorch >= v1.1
 2. Clone this repository.
 ```Shell
 git clone https://github.com/jhb86253817/PIPNet.git
@@ -24,6 +26,9 @@ pip install -r requirements.txt
 
 * PIPNet-ResNet18 trained on WFLW, with video `videos/002.avi` as the input:
 <img src="videos/002_out_WFLW_model.gif" alt="002_out_WFLW_model" width="512px">
+
+* PIPNet-ResNet18 trained on WFLW, with a snippet from `Shaolin Soccer` as the input:
+<img src="videos/shaolin_soccer.gif" alt="shaolin_soccer" width="512px">
 
 * PIPNet-ResNet18 trained on 300W+CelebA (GSSL), with video `videos/007.avi` as the input:
 <img src="videos/007_out_300W_CELEBA_model.gif" alt="007_out_300W_CELEBA_model" width="512px">
