@@ -3,7 +3,7 @@
 This is the code of paper [Pixel-in-Pixel Net: Towards Efficient Facial Landmark Detection in the Wild](https://arxiv.org/abs/2003.03771). We propose a novel facial landmark detector, PIPNet, that is **fast**, **accurate**, and **robust**. PIPNet can be trained under two settings: (1) supervised learning; (2) generalizable semi-supervised learning (GSSL). With GSSL, PIPNet has better cross-domain generalization performance by utilizing massive amounts of unlabeled data across domains. 
 
 <img src="images/speed.png" alt="speed" width="640px">
-Figure 1. Comparison to existing methods on speed-accuracy tradeoff, tested on WFLW full test set (closer to bottom-right corner is better).<br>
+Figure 1. Comparison to existing methods on speed-accuracy tradeoff, tested on WFLW full test set (closer to bottom-right corner is better).<br><br>
 
 <img src="images/detection_heads.png" alt="det_heads" width="512px">
 Figure 2. Comparison of different detection heads.<br>
@@ -26,7 +26,7 @@ pip install -r requirements.txt
 * PIPNet-ResNet18 trained on WFLW, with image `images/1.jpg` as the input:
 <img src="images/1_out_WFLW_model.jpg" alt="1_out_WFLW_model" width="400px">
 
-* PIPNet-ResNet18 trained on WFLW, with a snippet from `Shaolin Soccer` as the input:
+* PIPNet-ResNet18 trained on WFLW, with a snippet from *Shaolin Soccer* as the input:
 <img src="videos/shaolin_soccer.gif" alt="shaolin_soccer" width="400px">
 
 * PIPNet-ResNet18 trained on WFLW, with video `videos/002.avi` as the input:
