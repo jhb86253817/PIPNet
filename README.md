@@ -133,7 +133,7 @@ sh run_test.sh
 ```
 
 ## Community
-* [lite.ai.toolkit](https://github.com/DefTruth/lite.ai.toolkit): Provide [MNN C++](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/mnn/cv/mnn_pfld98.cpp), [NCNN C++](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/ncnn/cv/ncnn_pfld98.cpp), [TNN C++](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/tnn/cv/tnn_pfld98.cpp) and [ONNXRuntime C++](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/ort/cv/pipnet98.cpp) version of PIPNet.  
+* [lite.ai.toolkit](https://github.com/DefTruth/lite.ai.toolkit): Provide [MNN C++](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/mnn/cv/mnn_pipnet98.cpp), [NCNN C++](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/ncnn/cv/ncnn_pipnet98.cpp), [TNN C++](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/tnn/cv/tnn_pipnet98.cpp) and [ONNXRuntime C++](https://github.com/DefTruth/lite.ai.toolkit/blob/main/lite/ort/cv/pipnet98.cpp) version of PIPNet.  
 * [torchlm](https://github.com/DefTruth/torchlm): Provide a PyTorch re-implement of PIPNet with ONNX Export, can install with pip.
 
 ## Citation
