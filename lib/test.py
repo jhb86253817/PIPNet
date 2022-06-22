@@ -104,6 +104,8 @@ elif cfg.data_name == 'WFLW':
     norm_indices = [60, 72]
 elif cfg.data_name == 'AFLW':
     pass
+elif cfg.data_name == 'LaPa':
+    norm_indices = [66, 79]
 else:
     print('No such data!')
     exit(0)
