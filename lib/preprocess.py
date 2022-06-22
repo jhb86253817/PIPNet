@@ -536,6 +536,10 @@ def gen_data(root_folder, data_name, target_size):
                     f.write(str(x)+' '+str(y)+' ')
                 f.write('\n')
         gen_meanface(root_folder, data_name)
+    ################################################################################################################
+    elif data_name == 'LaPa':
+        pass
+        # TODO
     else:
         print('Wrong data!')
 
@@ -546,6 +550,7 @@ if __name__ == '__main__':
         print('2. COFW')
         print('3. WFLW')
         print('4. AFLW')
+        print('5. LaPa')
         exit(0)
     else:
         data_name = sys.argv[1]
