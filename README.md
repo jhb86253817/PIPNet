@@ -38,7 +38,7 @@ pip install -r requirements.txt
 ## Training
 
 ### Supervised Learning
-Datasets: [300W](https://ibug.doc.ic.ac.uk/resources/facial-point-annotations/), [COFW](http://www.vision.caltech.edu/xpburgos/ICCV13/), [WFLW](https://wywu.github.io/projects/LAB/WFLW.html), [AFLW](https://www.tugraz.at/institute/icg/research/team-bischof/lrs/downloads/aflw/)
+Datasets: [300W](https://ibug.doc.ic.ac.uk/resources/facial-point-annotations/), [COFW](http://www.vision.caltech.edu/xpburgos/ICCV13/), [WFLW](https://wywu.github.io/projects/LAB/WFLW.html), [AFLW](https://www.tugraz.at/institute/icg/research/team-bischof/lrs/downloads/aflw/), [LaPa](https://github.com/JDAI-CV/lapa-dataset)
 
 1. Download the datasets from official sources, then put them under folder `data`. The folder structure should look like this:
 ````
@@ -63,6 +63,10 @@ PIPNet
    |-- AFLW
        |-- flickr
        |-- AFLWinfo_release.mat
+   |-- LaPa
+       |-- train
+       |-- val
+       |-- test
 ````
 2. Go to folder `lib`, preprocess a dataset by running ```python preprocess.py DATA_NAME```. For example, to process 300W:
 ```
