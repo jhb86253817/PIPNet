@@ -273,7 +273,7 @@ def gen_data(root_folder, data_name, target_size):
 
     ################################################################################################################
     if data_name == 'data_300W':
-        folders_train = ['afw', 'helen/trainset', 'lfpw/trainset', '300-W/01_Indoor', '300-W/02_Outdoor']
+        folders_train = ['afw', 'helen/trainset', 'lfpw/trainset']
         annos_train = {}
         for folder_train in folders_train:
             all_files = sorted(os.listdir(os.path.join(root_folder, data_name, folder_train)))
