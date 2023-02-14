@@ -139,6 +139,43 @@ def process_aflw(root_folder, image_name, bbox, anno, target_size):
     anno = zip(anno[0::2], anno[1::2])
     return image_crop, anno
 
+def process_lapa(root_folder, folder_name, image_name, label_name, target_size):
+    image_path = os.path.join(root_folder, folder_name, 'images', image_name)
+    label_path = os.path.join(root_folder, folder_name, 'landmarks', label_name)
+    
+    with open(label_path, 'r') as ff:
+        anno = ff.readlines()[1:]
+        anno = [x.strip().split() for x in anno]
+        anno = [[int(float(x[0])), int(float(x[1]))] for x in anno]
+        image = cv2.imread(image_path)
+        image_height, image_width, _ = image.shape
+        anno_x = [x[0] for x in anno]
+        anno_y = [x[1] for x in anno]
+        bbox_xmin = min(anno_x)
+        bbox_ymin = min(anno_y)
+        bbox_xmax = max(anno_x)
+        bbox_ymax = max(anno_y)
+        bbox_width = bbox_xmax - bbox_xmin
+        bbox_height = bbox_ymax - bbox_ymin
+        scale = 1.1 
+        bbox_xmin -= int((scale-1)/2*bbox_width)
+        bbox_ymin -= int((scale-1)/2*bbox_height)
+        bbox_width *= scale
+        bbox_height *= scale
+        bbox_width = int(bbox_width)
+        bbox_height = int(bbox_height)
+        bbox_xmin = max(bbox_xmin, 0)
+        bbox_ymin = max(bbox_ymin, 0)
+        bbox_width = min(bbox_width, image_width-bbox_xmin-1)
+        bbox_height = min(bbox_height, image_height-bbox_ymin-1)
+        anno = [[(x-bbox_xmin)/bbox_width, (y-bbox_ymin)/bbox_height] for x,y in anno]
+
+        bbox_xmax = bbox_xmin + bbox_width
+        bbox_ymax = bbox_ymin + bbox_height
+        image_crop = image[bbox_ymin:bbox_ymax, bbox_xmin:bbox_xmax, :]
+        image_crop = cv2.resize(image_crop, (target_size, target_size))
+        return image_crop, anno
+
 def gen_meanface(root_folder, data_name):
     with open(os.path.join(root_folder, data_name, 'train.txt'), 'r') as f:
         annos = f.readlines()
@@ -538,8 +575,44 @@ def gen_data(root_folder, data_name, target_size):
         gen_meanface(root_folder, data_name)
     ################################################################################################################
     elif data_name == 'LaPa':
-        pass
-        # TODO
+        folders_train = ['train', 'val']
+        annos_train = {}
+        for folder_train in folders_train:
+            image_files = sorted(os.listdir(os.path.join(root_folder, data_name, folder_train, 'images')))
+            label_files = [x.replace('.jpg', '.txt') for x in image_files]
+            for image_name, label_name in zip(image_files, label_files):
+                print(image_name)
+                image_crop, anno = process_lapa(os.path.join(root_folder, 'LaPa'), folder_train, image_name, label_name, target_size)
+                image_crop_name = folder_train+'_'+image_name
+                cv2.imwrite(os.path.join(root_folder, data_name, 'images_train', image_crop_name), image_crop)
+                annos_train[image_crop_name] = anno
+        with open(os.path.join(root_folder, data_name, 'train.txt'), 'w') as f:
+            for image_crop_name, anno in annos_train.items():
+                f.write(image_crop_name+' ')
+                for x,y in anno:
+                    f.write(str(x)+' '+str(y)+' ')
+                f.write('\n')
+
+        folders_test = ['test']
+        annos_test = {}
+        for folder_test in folders_test:
+            image_files = sorted(os.listdir(os.path.join(root_folder, data_name, folder_test, 'images')))
+            label_files = [x.replace('.jpg', '.txt') for x in image_files]
+            assert len(image_files) == len(label_files)
+            for image_name, label_name in zip(image_files, label_files):
+                print(image_name)
+                image_crop, anno = process_lapa(os.path.join(root_folder, 'LaPa'), folder_test, image_name, label_name, target_size)
+                image_crop_name = folder_test+'_'+image_name
+                cv2.imwrite(os.path.join(root_folder, data_name, 'images_test', image_crop_name), image_crop)
+                annos_test[image_crop_name] = anno
+        with open(os.path.join(root_folder, data_name, 'test.txt'), 'w') as f:
+            for image_crop_name, anno in annos_test.items():
+                f.write(image_crop_name+' ')
+                for x,y in anno:
+                    f.write(str(x)+' '+str(y)+' ')
+                f.write('\n')
+
+        gen_meanface(root_folder, data_name)
     else:
         print('Wrong data!')
 
@@ -555,5 +628,3 @@ if __name__ == '__main__':
     else:
         data_name = sys.argv[1]
         gen_data('../data', data_name, 256)
-
-
